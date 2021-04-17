@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev": "ng serve --port 4201 --host 0.0.0.0 -o ",
+    "prod": "ng build --prod --aot",
+    "hmr": "ng serve --hmr --port 4201 --host 0.0.0.0 -o",
+    "clean": "rimraf package-lock.json node_modules"
   },
   "private": true,
   "dependencies": {
