@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registration-form',
@@ -22,9 +22,23 @@ export class RegistrationFormComponent implements OnInit {
   get f() {
     return this.form.controls;
   }
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor(private fb: FormBuilder) {}
 
-  onSubmit(): void {}
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  private initForm(): void {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      this.submitted.emit(this.form.value);
+    }
+  }
 }
